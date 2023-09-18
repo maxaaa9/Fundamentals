@@ -1,4 +1,5 @@
-number = int(input())
-sorted_digits = sorted(str(number), reverse=True)
-largest_number = int(''.join(sorted_digits))
-print(largest_number)
+number = input()
+
+largest_number = sorted(number, reverse=True)
+largest_number = int("".join(largest_number))
+print(int(largest_number))
