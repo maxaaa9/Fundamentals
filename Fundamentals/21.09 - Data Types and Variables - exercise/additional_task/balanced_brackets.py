@@ -12,6 +12,8 @@ for i in range(number_of_lines):
     if bracket_checker == "()":
         bracket_checker = ""
         balanced = True
+    else:
+        balanced = False
 if balanced:
     print("BALANCED")
 else:
