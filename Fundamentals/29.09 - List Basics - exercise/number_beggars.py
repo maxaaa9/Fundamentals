@@ -1,17 +1,15 @@
-string_of_integers = input().split(", ")
+string_with_integers = input().split(", ")
 number_of_beggars = int(input())
-my_list_with_integers = []
+my_integer_list = []
+for integers in range(len(string_with_integers)):
+    my_integer_list.append(int(string_with_integers[integers]))
 
-for integers in string_of_integers:
-    my_list_with_integers.append(int(integers))
-
-start_index = 0
-sum_for_beggars = []
-while start_index < number_of_beggars:
-    current_beggar_sum = 0
-    for beggar in range(start_index, len(my_list_with_integers), number_of_beggars):
-        current_beggar_sum += my_list_with_integers[beggar]
-    sum_for_beggars.append(current_beggar_sum)
-    start_index += 1
-
-print(sum_for_beggars)
+total_coins_per_beggar = []
+my_index_for_beggars = 0
+while my_index_for_beggars < number_of_beggars:
+    current_beggar_coin = 0
+    for coin in range(my_index_for_beggars, len(my_integer_list), number_of_beggars):
+        current_beggar_coin += my_integer_list[coin]
+    total_coins_per_beggar.append(current_beggar_coin)
+    my_index_for_beggars += 1
+print(total_coins_per_beggar)
