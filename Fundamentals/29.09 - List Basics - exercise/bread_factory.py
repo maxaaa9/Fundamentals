@@ -9,10 +9,10 @@ for i in my_input:
     if event == "rest":
         current_energy = energy
         energy += number
-        if energy > 100:
+        if energy >= 100:
             energy = 100
-        gained_energy = energy - current_energy
-        print(f"You gained {gained_energy} energy.")
+        energy_difference = energy - current_energy
+        print(f"You gained {energy_difference} energy.")
         print(f"Current energy: {energy}.")
 
     elif event == "order":
