@@ -1,4 +1,4 @@
-def calculator (first_integer, action, second_integer) -> int:
+def calculator(first_integer, action, second_integer) -> int:
     first_integer = int(first_integer)
     second_integer = int(second_integer)
     result = 0
