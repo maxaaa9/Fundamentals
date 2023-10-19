@@ -1,123 +1,130 @@
+def exchange(my_list, index) -> list:
+    for split in range(index + 1):
+        split = 0
+        popper = my_list.pop(split)
+        my_list.append(popper)
+    return my_list
 
-initial_list = input().split()
-my_digit_list = []
-command = input().split()
 
-for digit in initial_list:
-    digit = int(digit)
-    my_digit_list.append(digit)
+def index_validator(my_list, check_index):
+    check_index = int(check_index)
+    if check_index >= len(my_list) or check_index < 0:
+        return True
+    return False
+
+
+def max_even_or_odd(my_list, odd_or_even) -> str:
+    if odd_or_even == "odd":
+        max_odd_list = [x for x in my_list if x % 2 != 0]
+        if len(max_odd_list) >= 1:
+            return str(max(max_odd_list))
+    elif odd_or_even == "even":
+        max_even_list = [x for x in my_list if x % 2 == 0]
+        if len(max_even_list) >= 1:
+            return str(max(max_even_list))
+    return odd_or_even
+
+
+def min_even_or_odd(my_list, odd_or_even) -> str:
+    if odd_or_even == "odd":
+        min_odd_list = [x for x in my_list if x % 2 != 0]
+        if len(min_odd_list) >= 1:
+            return str(min(min_odd_list))
+
+    elif odd_or_even == "even":
+        min_even_list = [x for x in my_list if x % 2 == 0]
+        if len(min_even_list) >= 1:
+            return str(min(min_even_list))
+    return odd_or_even
+
+
+def rightmost_element(check_list, digit) -> int:
+    index_of_rightmost = 0
+    for index, num in enumerate(check_list):
+        if num == int(digit):
+            index_of_rightmost = index
+    return index_of_rightmost
+
+
+def first_odd_or_even(my_list, first_count, even_or_odd) -> list:
+    first_odd_or_even_list = []
+    needed_numbers = 1
+    if even_or_odd == "even":
+        for check_even in my_list:
+            if check_even % 2 == 0 and needed_numbers <= first_count:
+                first_odd_or_even_list.append(check_even)
+                needed_numbers += 1
+    elif even_or_odd == "odd":
+        for check_odd in my_list:
+            if check_odd % 2 != 0 and needed_numbers <= first_count:
+                first_odd_or_even_list.append(check_odd)
+                needed_numbers += 1
+    return first_odd_or_even_list
+
+
+def last_odd_or_even(my_list, last_count, even_or_odd) -> list:
+    last_odd_or_even_list = []
+    needed_numbers = 1
+    if even_or_odd == "even":
+        for check_even in range(len(my_list)-1, -1, -1):
+            if my_list[check_even] % 2 == 0 and needed_numbers <= last_count:
+                last_odd_or_even_list.append(my_list[check_even])
+                needed_numbers += 1
+    elif even_or_odd == "odd":
+        for check_odd in range(len(my_list)-1, -1, -1):
+            if my_list[check_odd] % 2 != 0 and needed_numbers <= last_count:
+                last_odd_or_even_list.append(my_list[check_odd])
+                needed_numbers += 1
+    return last_odd_or_even_list
+
+
+sequence_of_numbers = list(map(int, input().split()))
 
 while True:
-    if len(command) >= 2:
-        if command[1].isdigit():
-            my_index = int(command[1])
-    my_even_list = []
-    for first_even in my_digit_list:
-        if first_even % 2 == 0:
-            my_even_list.append(first_even)
-    my_odd_list = []
-    for first_odd in my_digit_list:
-        if first_odd % 2 != 0:
-            my_odd_list.append(first_odd)
-    if "exchange" in command:
-        if my_index > len(my_digit_list) or my_index < 0:
-            print("Invalid index")
-
-        left_part = my_digit_list[:my_index + 1]
-        right_part = my_digit_list[my_index + 1:]
-        new_list = right_part + left_part
-        my_digit_list = new_list
-    elif "max" in command and "even" in command:
-        max_even_list = []
-        for max_even in my_digit_list:
-            if max_even % 2 == 0:
-                max_even_list.append(max_even)
-        if len(max_even_list) >= 1:
-            max_even_digit = max(max_even_list)
-            max_even_digit = my_digit_list.index(max_even_digit)
-            print(max_even_digit)
-        else:
-            print("No matches")
-
-    elif "min" in command and "even" in command:
-        min_even_list = []
-        for min_even in my_digit_list:
-            if min_even % 2 == 0:
-                min_even_list.append(min_even)
-        if len(min_even_list) >= 1:
-            min_even_digit = min(min_even_list)
-            min_even_digit = my_digit_list.index(min_even_digit)
-            print(min_even_digit)
-        else:
-            print("No matches")
-
-    elif "max" in command and "odd" in command:
-        max_odd_list = []
-        for max_odd in my_digit_list:
-            if max_odd % 2 != 0:
-                max_odd_list.append(max_odd)
-        if len(max_odd_list) >= 1:
-            max_odd_digit = max(max_odd_list)
-            max_odd_digit = my_digit_list.index(max_odd_digit)
-            print(max_odd_digit)
-        else:
-            print("No matches")
-
-    elif "min" in command and "odd" in command:
-        min_odd_list = []
-        for even in my_digit_list:
-            if even % 2 != 0:
-                min_odd_list.append(even)
-        if len(min_odd_list) >= 1:
-            min_even_digit = min(min_odd_list)
-            min_even_digit = my_digit_list.index(min_even_digit)
-            print(min_even_digit)
-        else:
-            print("No matches")
-
-    elif "first" in command and "even" in command:
-        my_first_even_print_list = []
-        if my_index > len(my_digit_list):
-            print("Invalid count")
-        else:
-            for index_even in range(my_index):
-                my_first_even_print_list.append(my_even_list[index_even])
-            print(my_first_even_print_list)
-
-    elif "first" in command and "odd" in command:
-        my_first_odd_print_list = []
-        if my_index > len(my_digit_list):
-            print("Invalid count")
-        else:
-            if my_index > len(my_odd_list):
-                my_index = len(my_odd_list)
-            for index_odd in range(my_index):
-                my_first_odd_print_list.append(my_odd_list[index_odd])
-            print(my_first_odd_print_list)
-
-    elif "last" in command and "even" in command:
-        my_last_even_print_list = []
-        if my_index > len(my_digit_list):
-            print("Invalid count")
-        else:
-            for index_last_even in range(my_index):
-                if len(my_even_list) >= 1:
-                    my_last_even_print_list.append(my_even_list[index_last_even])
-            print(my_last_even_print_list)
-
-    elif "last" and "odd" in command:
-        my_last_odd_print_list = []
-        if my_index > len(my_digit_list):
-            print("Invalid count")
-        else:
-            if my_index > len(my_odd_list):
-                my_index = len(my_odd_list)
-            for index_last_odd in range(my_index):
-                if len(my_odd_list) >= 1:
-                    my_last_odd_print_list.append(my_odd_list[index_last_odd])
-            print(my_last_odd_print_list)
-
     command = input().split()
-    if "end" in command:
-        print(my_digit_list)
+
+    if command[0] == "end":
+        print(sequence_of_numbers)
         break
+
+    elif command[0] == "exchange":
+        if len(command) > 1:
+            if index_validator(sequence_of_numbers, command[1]):
+                print("Invalid index")
+                continue
+        exchange_numbers = int(command[1])
+        sequence_of_numbers = exchange(sequence_of_numbers, exchange_numbers)
+        continue
+    elif command[0] == "max":
+        check_max_digit_index = max_even_or_odd(sequence_of_numbers, command[1])
+        if check_max_digit_index.isdigit():
+            rightmost_index = rightmost_element(sequence_of_numbers, check_max_digit_index)
+            print(rightmost_index)
+        else:
+            print("No matches")
+        continue
+    elif command[0] == "min":
+        check_min_digit_index = min_even_or_odd(sequence_of_numbers, command[1])
+        if check_min_digit_index.isdigit():
+            rightmost_index = rightmost_element(sequence_of_numbers, check_min_digit_index)
+            print(rightmost_index)
+        else:
+            print("No matches")
+        continue
+    elif command[0] == "first":
+        count_numbers = int(command[1])
+        if count_numbers > len(sequence_of_numbers):
+            print("Invalid count")
+            continue
+        else:
+            print(first_odd_or_even(sequence_of_numbers, count_numbers, command[2]))
+    elif command[0] == "last":
+        count_numbers = int(command[1])
+        if count_numbers > len(sequence_of_numbers):
+            print("Invalid count")
+            continue
+        else:
+            print(last_odd_or_even(sequence_of_numbers, count_numbers, command[2]))
+
+
+
