@@ -8,8 +8,8 @@
 # Print the words in the following format:
 # {word} - {synonym1, synonym2 … synonymN}
 
-synonym_dictionary = {}
 count_of_words = int(input())
+synonym_dictionary = {}
 
 for words in range(count_of_words):
     word = input()
