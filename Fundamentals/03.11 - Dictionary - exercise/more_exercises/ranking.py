@@ -22,11 +22,15 @@ while True:
                 if user_dictionary[username][contest] < points:
                     user_dictionary[username][contest] = points
 
-best_candidate = ""
-my_sorted_list = list(user_dictionary.keys())
-my_sorted_list.sort()
-sorted_dictionary = {i: user_dictionary[i] for i in my_sorted_list}
-# print(f"Best candidate is {user} with total {total_points} points.")
+best_candidate = {}
+for candidate in user_dictionary.keys():
+    for course, score_sum in user_dictionary[candidate].items():
+        if candidate not in best_candidate.keys():
+            best_candidate[candidate] = 0
+        best_candidate[candidate] += score_sum
+sorted_dictionary = {key: dict(sorted(val.items(), key=lambda x: -x[1])) for key, val in user_dictionary.items()}
+
+print(f"Best candidate is {max(best_candidate)} with total {best_candidate[max(best_candidate)]} points.\nRanking:")
 for user in sorted_dictionary.keys():
     print(user)
     for module, score in sorted_dictionary[user].items():
