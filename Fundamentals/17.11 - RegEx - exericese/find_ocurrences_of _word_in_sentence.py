@@ -9,3 +9,4 @@ find_word = input()
 pattern = fr"(?i)\b({find_word})+\b"
 match = re.findall(pattern, text)
 print(len(match))
+
