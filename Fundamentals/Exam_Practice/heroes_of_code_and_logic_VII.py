@@ -8,7 +8,7 @@ def cast_spell(name, stats, mp, spell):
 
 
 def take_damage(name, stats, dmg, attacker_name):
-    if stats[0] < dmg:
+    if stats[0] <= dmg:
         print(f"{name} has been killed by {attacker_name}!")
         return "Killed"
     print(f"{name} was hit for {dmg} HP by {attacker_name} and now has {stats[0] - dmg} HP left!")
@@ -17,7 +17,7 @@ def take_damage(name, stats, dmg, attacker_name):
 
 
 def recharge(name, stats, re_amount):
-    if stats[1] + re_amount > 200:
+    if stats[1] + re_amount >= 200:
         re_amount = 200 - stats[1]
         stats[1] = 200
     else:
@@ -27,7 +27,7 @@ def recharge(name, stats, re_amount):
 
 
 def heal(name, stats, heal):
-    if stats[0] + heal > 100:
+    if stats[0] + heal >= 100:
         heal = 100 - stats[0]
         stats[0] = 100
     else:
