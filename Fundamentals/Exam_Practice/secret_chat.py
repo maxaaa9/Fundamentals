@@ -17,6 +17,7 @@ while True:
             concealed_message += substring[::-1]
         else:
             print("error")
+            continue
 
     elif command[0] == "ChangeAll":
         substring = command[1]
