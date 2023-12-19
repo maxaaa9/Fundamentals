@@ -44,11 +44,9 @@ def rightmost_element(list_with_nums, main_int_list, number, operation):
     for right_index, num in enumerate(main_int_list):
         if operation == "max":
             if num >= number and num in list_with_nums:
-                max_num = num
                 max_index = right_index
         else:
             if num <= number and num in list_with_nums:
-                max_num = num
                 max_index = right_index
     return max_index
 
@@ -88,6 +86,5 @@ while True:
             print("Invalid count")
             continue
         first_last(line_of_integers, count, status, action)
-
 
 print(line_of_integers)
